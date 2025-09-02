@@ -3,28 +3,38 @@ import { languages } from "./lanuguages"
 import { clsx } from "clsx"
 
 /**
- * Goal: Allow the user to start guessing the letters
+ * Goal: Add in the incorrect guesses mechanism to the game
  * 
- * Challenge: Update the keyboard when a letter is right
- * or wrong.
+ * Challenge: Derive a variable (`wrongGuessCount`) for the 
+ * number of incorrect guesses by using the other state 
+ * values we're already holding in the component.
  * 
- * Bonus: use the `clsx` package to easily add conditional 
- * classNames to the keys of the keyboard. Check the docs 
- * to learn how to use it 📖
+ * console.log the wrongGuessCount for now
  */
 
 export default function AssemblyEndgame() {
     const [currentWord, setCurrentWord] = useState("react")
     const [guessedLetters, setGuessedLetters] = useState([])
 
+
+    //derive variable
+    const [wrongGuessCount, setWrongGuessCount] = useState(0)
+
+    console.log(wrongGuessCount)
+
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     function addGuessedLetter(letter) {
-        setGuessedLetters(prevLetters =>
-            prevLetters.includes(letter) ?
-                prevLetters :
-                [...prevLetters, letter]
-        )
+      if(currentWord.includes(letter)){
+        // correct guess, don't change count
+      } else {
+        setWrongGuessCount(prev => prev + 1)
+      }
+      setGuessedLetters(prevLetters =>
+          prevLetters.includes(letter) ?
+              prevLetters :
+              [...prevLetters, letter]
+      )
     }
 
     const languageElements = languages.map(lang => {
@@ -44,9 +54,14 @@ export default function AssemblyEndgame() {
         )
     })
 
-    const letterElements = currentWord.split("").map((letter, index) => (
-        <span key={index}>{letter.toUpperCase()}</span>
-    ))
+    const letterElements = currentWord.split("").map((letter, index) => {
+      const isGuessed=guessedLetters.includes(letter)
+      const isTrue=isGuessed && currentWord.includes(letter)
+
+      return(
+        isTrue ? <span key={index}>{letter.toUpperCase()}</span>: <span key={index}>_</span>
+      )
+    })
 
     const keyboardElements = alphabet.split("").map(letter => {
       const isGuessed=guessedLetters.includes(letter)
@@ -77,19 +92,24 @@ export default function AssemblyEndgame() {
                 <p>Guess the word within 8 attempts to keep the
                 programming world safe from Assembly!</p>
             </header>
+
             <section className="game-status">
                 <h2>You win!</h2>
                 <p>Well done! 🎉</p>
             </section>
+
             <section className="language-chips">
                 {languageElements}
             </section>
+
             <section className="word">
                 {letterElements}
             </section>
+
             <section className="keyboard">
                 {keyboardElements}
             </section>
+
             <button className="new-game">New Game</button>
         </main>
     )
