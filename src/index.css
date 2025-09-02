@@ -66,6 +66,7 @@ section.word {
     display: flex;
     justify-content: center;
     gap: 2px;
+    margin-bottom: 20px;
 }
 
 section.word > span {
@@ -78,4 +79,34 @@ section.word > span {
     font-size: 1.125rem;
     border-bottom: 1px solid #F9F4DA;
     
+}
+
+
+section.alphabet{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-width: 450px;
+  margin-bottom: 36px;
+  
+}
+section.alphabet > button{
+  height: 35px;
+  width: 35px;
+  background-color: #FCBA29;
+  border: 1px solid #D7D7D7;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button.new-game {
+    background-color: #11B5E5;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    width: 225px;
+    height: 40px;
+    padding: 6px 12px;
+    display: block;
+    margin-inline: auto;
+    cursor: pointer;
 }
