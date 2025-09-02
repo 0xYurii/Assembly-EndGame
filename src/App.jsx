@@ -13,6 +13,9 @@ export default function AssemblyEndgame() {
     const [currentWord, setCurrentWord] = useState("react")
     
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
+    const alphabetButton=alphabet.split('').map((letter,index)=>(
+      <button key={index}> {letter.toUpperCase()} </button>
+    ))
 
     const languageElements = languages.map(lang => {
         const styles = {
@@ -51,6 +54,10 @@ export default function AssemblyEndgame() {
             <section className="word">
                 {letterElements}
             </section>
+            <section className="alphabet">
+              {alphabetButton}
+            </section>
+            <button className="new-game">New Game</button>
         </main>
     )
 }
