@@ -12,3 +12,19 @@ body {
     display: flex;
     justify-content: center;
 }
+
+header{
+  text-align: center;
+}
+
+header > h1{
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #F9F4DA;
+}
+
+header > p{
+  font-size: 0.875rem;
+  max-width: 350px;
+  color: #8E8E8E;
+}
