@@ -28,3 +28,22 @@ header > p{
   max-width: 350px;
   color: #8E8E8E;
 }
+
+section.game-status{
+  display: flex;
+  flex-direction: column;
+  background-color: #10A95B;
+  align-items: center;
+  color: #F9F4DA;
+  border-radius: 4px;
+  margin-block: 30px;
+}
+
+section.game-status > p{
+  margin: 5px;
+}
+
+section.game-status > h2{
+  font-size: 1.25rem;
+  margin: 5px;
+}
