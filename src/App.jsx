@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react"
 
-function App() {
-  const [count, setCount] = useState(0)
+/**
+ * Project planning:
+ * 
+ * Questions to ask yourself before writing any code:
+ * 
+ * - What are the main containers of elements I need
+ *   in this app?
+ * 
+ * 
+ * - What values will need to be saved in state vs.
+ *   what values can be derived from the state?
+ * 
+ * 
+ * - How will the user interact with the app? What
+ *   events do I need to handle?
+ * 
+ * 
+ */
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export default function Hangman() {
+    return (
+        <main>
+            Game goes here
+        </main>
+    )
 }
-
-export default App
