@@ -78,27 +78,26 @@ section.word > span {
     align-items: center;
     font-size: 1.125rem;
     border-bottom: 1px solid #F9F4DA;
-    
 }
 
+section.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 450px;
+    margin-bottom: 36px;
+}
 
-section.alphabet{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  max-width: 450px;
-  margin-bottom: 36px;
-  
+section.keyboard > button {
+    height: 35px;
+    width: 35px;
+    background-color: #FCBA29;
+    border: 1px solid #D7D7D7;
+    border-radius: 3px;
+    cursor: pointer;
 }
-section.alphabet > button{
-  height: 35px;
-  width: 35px;
-  background-color: #FCBA29;
-  border: 1px solid #D7D7D7;
-  cursor: pointer;
-  border-radius: 5px;
-}
+
 button.new-game {
     background-color: #11B5E5;
     border: 1px solid #D7D7D7;
@@ -109,4 +108,11 @@ button.new-game {
     display: block;
     margin-inline: auto;
     cursor: pointer;
+}
+
+section.keyboard > button.true{
+  background-color: #10A95B;
+}
+section.keyboard > button.wrong{
+  background-color: #EB5D49;
 }
