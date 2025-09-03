@@ -5,22 +5,30 @@ import { languages } from "./lanuguages"
 /**
  * Goal: Add in the incorrect guesses mechanism to the game
  * 
- * Challenge: When mapping over the languages, determine how
- * many of them have been "lost" and add the "lost" class if
- * so.
- * 
- * Hint: use the wrongGuessCount combined with the index of
- * the item in the array while inside the languages.map code
+ * Challenge:
+ * 1. Create a variable `isGameOver` which evaluates to `true`
+ *    if the user has guessed incorrectly 8 times. Consider how
+ *    we might make this more dynamic if we were ever to add or
+ *    remove languages from the languages array.
+ * 2. Conditionally render the New Game button only if the game
+ *    is over.
  */
 
 export default function AssemblyEndgame() {
     // State values
     const [currentWord, setCurrentWord] = useState("react")
     const [guessedLetters, setGuessedLetters] = useState([])
+
+    
     
     // Derived values
     const wrongGuessCount = 
         guessedLetters.filter(letter => !currentWord.includes(letter)).length
+
+    // new game button
+    const isGameWon=currentWord.split('').every(letter=>guessedLetters.includes(letter))
+    const isGameLost=wrongGuessCount >= languages.length-1
+    const isGameOver= isGameLost || isGameWon
     
     // Static values
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -97,7 +105,7 @@ export default function AssemblyEndgame() {
             <section className="keyboard">
                 {keyboardElements}
             </section>
-            <button className="new-game">New Game</button>
+            {isGameOver  && <button className="new-game">New Game</button>}
         </main>
     )
 }
