@@ -2,7 +2,7 @@ import { useState } from "react"
 import { clsx } from "clsx"
 import { languages } from "./lanuguages"
 import {getFarewellText,randomWord} from "./utils"
-
+import Confetti from "react-confetti"
 /**
  * Backlog:
  * 
@@ -11,12 +11,10 @@ import {getFarewellText,randomWord} from "./utils"
  * ✅ Fix a11y issues
  * ✅ Choose a random word from a list of words
  * ✅ Make the New Game button reset the game
- * - Reveal what the word was if the user loses the game
+ * ✅ Reveal what the word was if the user loses the game
  * - Confetti drop when the user wins
  * 
- * Challenge: Reveal the missing letters of the word if the user
- * loses the game. Style the missing letters to have the same red
- * color as the wrong letter keys.
+ * Challenge: 🎊🎊🎊🎊🎊
  */
 
 export default function AssemblyEndgame() {
@@ -163,6 +161,13 @@ export default function AssemblyEndgame() {
                 {keyboardElements}
             </section>
             {isGameOver  && <button className="new-game" onClick={newGame}>New Game</button>}
+
+            {isGameWon && 
+              <Confetti
+                recycle={false} 
+                numberOfPieces={1000}
+              />
+            }
         </main>
     )
 }
