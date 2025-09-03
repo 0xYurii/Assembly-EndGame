@@ -9,26 +9,26 @@ import {getFarewellText,randomWord} from "./utils"
  * ✅ Farewell messages in status section
  * ✅ Disable the keyboard when the game is over
  * ✅ Fix a11y issues
- * - Choose a random word from a list of words
+ * ✅ Choose a random word from a list of words
  * - Make the New Game button reset the game
  * - Confetti drop when the user wins
  * 
- * Challenge: Choose a random word from a list of words
- * 
- * 1. Create a new function in utils.js that chooses a random
- *    word from the imported array of words and returns it
- * 2. import the function into this file
- * 3. Figure out where to use that function.
- */
+ * Challenge: Make the New Game button reset the game
+ */ 
 
 export default function AssemblyEndgame() {
     // State values
-    const [currentWord, setCurrentWord] = useState(randomWord())
+    const [currentWord, setCurrentWord] = useState(()=> randomWord())
     console.log(currentWord)
     const [guessedLetters, setGuessedLetters] = useState([])
 
     
-    
+    // New Game function
+    function newGame(){
+      setCurrentWord(()=> randomWord())
+      setGuessedLetters(()=>[])
+    }
+
     // Derived values
     const wrongGuessCount = 
         guessedLetters.filter(letter => !currentWord.includes(letter)).length
@@ -111,6 +111,8 @@ export default function AssemblyEndgame() {
       farewell: !isGameOver && isLastGuessWrong
     })
 
+
+
     return (
         <main>
             <header>
@@ -148,7 +150,7 @@ export default function AssemblyEndgame() {
             <section className="keyboard">
                 {keyboardElements}
             </section>
-            {isGameOver  && <button className="new-game">New Game</button>}
+            {isGameOver  && <button className="new-game" onClick={newGame}>New Game</button>}
         </main>
     )
 }
