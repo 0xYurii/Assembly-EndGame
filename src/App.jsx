@@ -1,18 +1,21 @@
 import { useState } from "react"
 import { clsx } from "clsx"
 import { languages } from "./lanuguages"
+import {getFarewellText} from "./utils"
 
 /**
- * Goal: Add in the incorrect guesses mechanism to the game
+ * Challenge: Bid farewell to each programming language
+ * as it gets erased from existance 👋😭
  * 
- * Challenge:
- * Conditionally render either the "won" or "lost" statuses
- * from the design, both the text and the styles, based on the
- * new derived variables.
+ * Use the `getFarewellText` function from the new utils.js
+ * file to generate the text.
  * 
- * Note: We always want the surrounding `section` to be rendered,
- * so only change the content inside that section. Otherwise the
- * content on the page would jump around a bit too much.
+ * Check hint.md if you're feeling stuck, but do your best
+ * to solve the challenge without the hint! 🕵️
+ * 
+ * You'll need to find a way to know if the most recently-
+ * guessed letter was correct or not, so you're only
+ * displaying the farewell message after wrong guesses.
  */
 
 export default function AssemblyEndgame() {
@@ -33,19 +36,6 @@ export default function AssemblyEndgame() {
 
 
     
-
-        // <>
-        //   <h2>You win!</h2>
-        //   <p>Well done! 🎉</p>
-        // </>:
-        // <>
-        //   <h2>You Lose!</h2>
-        //   <p>come back soon 💔</p>
-        // </>
-
-
-    
-    // Static values
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     function addGuessedLetter(letter) {
@@ -56,6 +46,7 @@ export default function AssemblyEndgame() {
         )
     }
 
+    // 9 languages
     const languageElements = languages.map((lang, index) => {
         const isLanguageLost = index < wrongGuessCount
         const styles = {
@@ -64,6 +55,7 @@ export default function AssemblyEndgame() {
         }
         const className = clsx("chip", isLanguageLost && "lost")
         return (
+          
             <span
                 className={className}
                 style={styles}
@@ -71,9 +63,11 @@ export default function AssemblyEndgame() {
             >
                 {lang.name}
             </span>
+          
         )
     })
 
+    //displaying the REACR word
     const letterElements = currentWord.split("").map((letter, index) => (
         <span key={index}>
             {guessedLetters.includes(letter) ? letter.toUpperCase() : ""}
@@ -100,9 +94,16 @@ export default function AssemblyEndgame() {
         )
     })
 
+    // Get the last guessed letter
+    const lastGuessedLetter = guessedLetters[guessedLetters.length - 1]
+
+    // Check if it was wrong
+    const isLastGuessWrong = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
+
     const GamewonClass=clsx("game-status",{
       won:isGameWon,
-      lose:isGameLost
+      lose:isGameLost,
+      farewell: !isGameOver && isLastGuessWrong
     })
 
     return (
@@ -114,18 +115,23 @@ export default function AssemblyEndgame() {
             </header>
             <section className={GamewonClass}>
               {isGameOver?(
-              isGameWon?
-              <>
-                <h2>You win!</h2>
-                <p>Well done! 🎉</p>
-              </>:
-              <>
-                <h2>Game over!</h2>
-                <p>You lose! Better start learning Assembly 😭</p>
-              </>
+                isGameWon?
+                  <>
+                    <h2>You win!</h2>
+                    <p>Well done! 🎉</p>
+                  </>:
+                  <>
+                    <h2>Game over!</h2>
+                    <p>You lose! Better start learning Assembly 😭</p>
+                  </>
               )
               
-              :(null)}
+              :(isLastGuessWrong?
+                getFarewellText(languages[wrongGuessCount-1].name):
+                
+                null
+                
+              )}
 
             </section>
             <section className="language-chips">

@@ -38,6 +38,7 @@ section.game-status {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: #F9F4DA;
     width: 100%;
     max-width: 350px;
@@ -53,8 +54,19 @@ section.game-status.won {
 section.game-status.lose {
     background-color: #BA2A2A;
 }
+
+section.game-status.farewell {
+    background-color: #7A5EA7;
+    border: 1px dashed #323232;
+}
+
 section.game-status > p {
     margin: 5px;
+}
+
+section.game-status > p.farewell-message {
+    font-style: italic;
+    font-weight: 400;
 }
 
 section.game-status > h2 {
