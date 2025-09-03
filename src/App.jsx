@@ -2,20 +2,17 @@ import { useState } from "react"
 import { clsx } from "clsx"
 import { languages } from "./lanuguages"
 import {getFarewellText} from "./utils"
-
 /**
- * Challenge: Bid farewell to each programming language
- * as it gets erased from existance 👋😭
+ * Backlog:
  * 
- * Use the `getFarewellText` function from the new utils.js
- * file to generate the text.
+ * ✅ Farewell messages in status section
+ * - Disable the keyboard when the game is over
+ * - Fix a11y issues
+ * - Make the New Game button reset the game
+ * - Choose a random word from a list of words
+ * - Confetti drop when the user wins
  * 
- * Check hint.md if you're feeling stuck, but do your best
- * to solve the challenge without the hint! 🕵️
- * 
- * You'll need to find a way to know if the most recently-
- * guessed letter was correct or not, so you're only
- * displaying the farewell message after wrong guesses.
+ * Challenge: Disable the keyboard when the game is over
  */
 
 export default function AssemblyEndgame() {
@@ -141,7 +138,7 @@ export default function AssemblyEndgame() {
                 {letterElements}
             </section>
             <section className="keyboard">
-                {keyboardElements}
+                {!isGameOver && keyboardElements}
             </section>
             {isGameOver  && <button className="new-game">New Game</button>}
         </main>
